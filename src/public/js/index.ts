@@ -1,5 +1,6 @@
+import { benchmarks } from "./benchmark";
 import { EntityManager } from "./ecs/EntityManager";
-import { Gravity } from "./implementations/GravitySystem";
+import { GravitySystem } from "./implementations/GravitySystem";
 import { PhysicsComponentManager } from "./implementations/PhysicsComponent";
 import { PositionComponentManager } from "./implementations/PositionComponent";
 import { RenderableComponentManager } from "./implementations/RenderableComponent";
@@ -14,38 +15,40 @@ const stateChange = setInterval(() => {
     }
 }, 20);
 
-const World = new EntityManager();
+// const World = new EntityManager();
 
-const PositionManager = new PositionComponentManager();
-const PhysicsManager = new PhysicsComponentManager();
-const VelocityManager = new VelocityComponentManager();
-const RenderManager = new RenderableComponentManager();
+// const PositionManager = new PositionComponentManager();
+// const PhysicsManager = new PhysicsComponentManager();
+// const VelocityManager = new VelocityComponentManager();
+// const RenderManager = new RenderableComponentManager();
 
-const gravity = new Gravity(World, [PositionManager, PhysicsManager, VelocityManager]);
+// const gravity = new GravitySystem(World, [PositionManager, PhysicsManager, VelocityManager]);
 
-const transform = new TransformSystem(World, [PositionManager, VelocityManager]);
+// const transform = new TransformSystem(World, [PositionManager, VelocityManager]);
 
-const renderSys = new RenderSystem(World, [PositionManager, RenderManager]);
+// const renderSys = new RenderSystem(World, [PositionManager, RenderManager]);
 
 function main() {
     
-    const Player = World.createEntity('Player');
-    Player.addComponent(PositionManager);
-    Player.addComponent(PhysicsManager);
-    Player.addComponent(VelocityManager);
-    Player.addComponent(RenderManager);
+    benchmarks();
 
-    gameLoop();
+    // const Player = World.createEntity('Player');
+    // Player.addComponent(PositionManager);
+    // Player.addComponent(PhysicsManager);
+    // Player.addComponent(VelocityManager);
+    // Player.addComponent(RenderManager);
+
+    // gameLoop();
 
 }
 
-function gameLoop() {
+// function gameLoop() {
 
-    gravity.update();
+//     gravity.update();
 
-    transform.update();
+//     transform.update();
 
-    renderSys.update();
+//     renderSys.update();
 
-    requestAnimationFrame(gameLoop);
-}
+//     requestAnimationFrame(gameLoop);
+// }

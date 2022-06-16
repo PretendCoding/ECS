@@ -3,7 +3,7 @@ import { EntityManager } from "../ecs/EntityManager";
 import { System } from "../ecs/System";
 import { VelocityComponentManager, Velocity } from "./VelocityComponent";
 
-export class Gravity extends System {
+export class GravitySystem extends System {
     constructor(entityManager: EntityManager, [...managers]: ComponentManager[]) {
         super(entityManager, managers);
     }
