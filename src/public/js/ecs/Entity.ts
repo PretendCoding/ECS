@@ -1,3 +1,4 @@
+import { Component } from "./Component";
 import { ComponentManager } from "./ComponentManager";
 
 export class Entity {
@@ -7,7 +8,7 @@ export class Entity {
         this.id = id;
     }
 
-    addComponent(manager: ComponentManager) {
-        manager.addComponentToEntity(this.id);
+    addComponent(manager: ComponentManager): Component {
+        return manager.addComponentToEntity(this.id);
     }
 }

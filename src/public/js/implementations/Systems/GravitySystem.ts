@@ -13,7 +13,7 @@ export class GravitySystem extends System {
         this.entities.forEach(entityId => {
             let manager = this.managersToQuery.get('VelocityComponentManager') as VelocityComponentManager;
             let velocity = manager.components.get(entityId) as Velocity;
-            velocity.dy += 0.01;
+            velocity.dy += 0.1;
         });
     }
 }

@@ -2,6 +2,7 @@ import { ComponentManager } from "../../ecs/ComponentManager";
 import { EntityManager } from "../../ecs/EntityManager";
 import { System } from "../../ecs/System";
 import { PositionComponentManager, Position } from "../Components/PositionComponent";
+import { Renderable, RenderableComponentManager } from "../Components/RenderableComponent";
 
 
 export class RenderSystem extends System {
@@ -12,13 +13,11 @@ export class RenderSystem extends System {
     update() {
         this.refresh();
         this.entities.forEach(entityId => {
-            // let manager = this.managersToQuery.get('RenderableComponentManager') as RenderableComponentManager;
-            // This is where we'd get the renderable component, but neh
+            let manager = this.managersToQuery.get('RenderableComponentManager') as RenderableComponentManager;
+            let render = manager.components.get(entityId) as Renderable;
             let posManager = this.managersToQuery.get('PositionComponentManager') as PositionComponentManager;
-            let player = document.querySelector('.Player') as HTMLDivElement;
             let pos = posManager.components.get(entityId) as Position;
-            player.style.top = pos.y.toString() + 'px';
-            // console.log(pos.y);
+            render.element.style.top = pos.y.toString() + 'px';
         });
     }
 }

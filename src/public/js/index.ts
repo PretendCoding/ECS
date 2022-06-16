@@ -1,12 +1,11 @@
 import { EntityManager } from "./ecs/EntityManager";
 import { PhysicsComponentManager } from "./implementations/Components/PhysicsComponent";
 import { PositionComponentManager } from "./implementations/Components/PositionComponent";
-import { RenderableComponentManager } from "./implementations/Components/RenderableComponent";
+import { Renderable, RenderableComponentManager } from "./implementations/Components/RenderableComponent";
 import { VelocityComponentManager } from "./implementations/Components/VelocityComponent";
 import { GravitySystem } from "./implementations/Systems/GravitySystem";
 import { RenderSystem } from "./implementations/Systems/RenderSystem";
 import { TransformSystem } from "./implementations/Systems/TransformSystem";
-
 
 const stateChange = setInterval(() => {
     if (document.readyState == 'complete'){
@@ -36,7 +35,8 @@ function main() {
     Player.addComponent(PositionManager);
     Player.addComponent(PhysicsManager);
     Player.addComponent(VelocityManager);
-    Player.addComponent(RenderManager);
+    const comp = Player.addComponent(RenderManager) as Renderable;
+    comp.element = document.querySelector('.Player') as HTMLDivElement;
 
     gameLoop();
 
@@ -51,4 +51,5 @@ function gameLoop() {
     renderSys.update();
 
     requestAnimationFrame(gameLoop);
+
 }

@@ -3,6 +3,11 @@ import { ComponentManager } from "../../ecs/ComponentManager";
 
 export class Renderable extends Component {
     element: HTMLElement;
+
+    constructor() {
+        super();
+        this.element = document.createElement('HTMLElement');
+    }
 }
 
 export class RenderableComponentManager extends ComponentManager {
