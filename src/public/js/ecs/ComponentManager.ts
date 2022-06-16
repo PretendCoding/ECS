@@ -1,6 +1,7 @@
 import { Component } from "./Component";
 
 export class ComponentManager {
+// It might be better to call this entityComponentPairs since that's what it is
     components: Map<string, Component>;
     name: string;
 
