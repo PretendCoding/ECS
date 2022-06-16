@@ -10,6 +10,7 @@ export class ComponentManager {
     }
 
     addComponentToEntity(entityId: string): Component {
+        throw new Error(`function addComponentToEntity in ${this.name} should be overridden, and is not`);
         return new Component();
     }
 }
