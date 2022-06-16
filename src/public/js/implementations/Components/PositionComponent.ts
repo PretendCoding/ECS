@@ -1,5 +1,5 @@
-import { Component } from "../ecs/Component";
-import { ComponentManager } from "../ecs/ComponentManager";
+import { Component } from "../../ecs/Component";
+import { ComponentManager } from "../../ecs/ComponentManager";
 
 export class Position extends Component {
     x = 0;
@@ -12,7 +12,8 @@ export class PositionComponentManager extends ComponentManager{
         this.components = new Map<string, Position>();
     }
 
-    addComponentToEntity(entityId: string) {
+    addComponentToEntity(entityId: string): Position {
         this.components.set(entityId, new Position());
+        return this.components.get(entityId) as Position;
     }
 }

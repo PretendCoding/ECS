@@ -38,6 +38,12 @@ export class System {
         this.entities = entities;  
     }
 
+    refresh() {
+        if (this.entities.size == 0) {
+            this.populateEntitiesList();
+        }
+    }
+
     init() {}
 
     update() {}

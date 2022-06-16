@@ -9,5 +9,7 @@ export class ComponentManager {
         this.name = name;
     }
 
-    addComponentToEntity(entityId: string) {}
+    addComponentToEntity(entityId: string): Component {
+        return new Component();
+    }
 }

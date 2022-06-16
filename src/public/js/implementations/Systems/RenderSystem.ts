@@ -1,7 +1,8 @@
-import { ComponentManager } from "../ecs/ComponentManager";
-import { EntityManager } from "../ecs/EntityManager";
-import { System } from "../ecs/System";
-import { Position, PositionComponentManager } from "./PositionComponent";
+import { ComponentManager } from "../../ecs/ComponentManager";
+import { EntityManager } from "../../ecs/EntityManager";
+import { System } from "../../ecs/System";
+import { PositionComponentManager, Position } from "../Components/PositionComponent";
+
 
 export class RenderSystem extends System {
     constructor(entityManager: EntityManager, [...managers]: ComponentManager[]) {
@@ -9,9 +10,7 @@ export class RenderSystem extends System {
     }
 
     update() {
-        if (this.entities.size == 0) {
-            this.populateEntitiesList();
-        }
+        this.refresh();
         this.entities.forEach(entityId => {
             // let manager = this.managersToQuery.get('RenderableComponentManager') as RenderableComponentManager;
             // This is where we'd get the renderable component, but neh

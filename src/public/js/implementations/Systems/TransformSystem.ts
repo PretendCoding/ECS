@@ -1,8 +1,8 @@
-import { ComponentManager } from "../ecs/ComponentManager";
-import { EntityManager } from "../ecs/EntityManager";
-import { System } from "../ecs/System";
-import { Position, PositionComponentManager } from "./PositionComponent";
-import { Velocity, VelocityComponentManager } from "./VelocityComponent";
+import { ComponentManager } from "../../ecs/ComponentManager";
+import { EntityManager } from "../../ecs/EntityManager";
+import { System } from "../../ecs/System";
+import { PositionComponentManager, Position } from "../Components/PositionComponent";
+import { VelocityComponentManager, Velocity } from "../Components/VelocityComponent";
 
 export class TransformSystem extends System {
     constructor(entityManager: EntityManager, [...managers]: ComponentManager[]) {
@@ -10,9 +10,7 @@ export class TransformSystem extends System {
     }
 
     update() {
-        if (this.entities.size == 0) {
-            this.populateEntitiesList();
-        }
+        this.refresh();
         this.entities.forEach(entityId => {
             let posManager = this.managersToQuery.get('PositionComponentManager') as PositionComponentManager;
             let volManager = this.managersToQuery.get('VelocityComponentManager') as VelocityComponentManager;

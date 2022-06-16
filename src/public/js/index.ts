@@ -1,12 +1,12 @@
-import { benchmarks } from "./benchmark";
 import { EntityManager } from "./ecs/EntityManager";
-import { GravitySystem } from "./implementations/GravitySystem";
-import { PhysicsComponentManager } from "./implementations/PhysicsComponent";
-import { PositionComponentManager } from "./implementations/PositionComponent";
-import { RenderableComponentManager } from "./implementations/RenderableComponent";
-import { RenderSystem } from "./implementations/RenderSystem";
-import { TransformSystem } from "./implementations/TransformSystem";
-import { VelocityComponentManager } from "./implementations/VelocityComponent";
+import { PhysicsComponentManager } from "./implementations/Components/PhysicsComponent";
+import { PositionComponentManager } from "./implementations/Components/PositionComponent";
+import { RenderableComponentManager } from "./implementations/Components/RenderableComponent";
+import { VelocityComponentManager } from "./implementations/Components/VelocityComponent";
+import { GravitySystem } from "./implementations/Systems/GravitySystem";
+import { RenderSystem } from "./implementations/Systems/RenderSystem";
+import { TransformSystem } from "./implementations/Systems/TransformSystem";
+
 
 const stateChange = setInterval(() => {
     if (document.readyState == 'complete'){
@@ -15,40 +15,40 @@ const stateChange = setInterval(() => {
     }
 }, 20);
 
-// const World = new EntityManager();
+const World = new EntityManager();
 
-// const PositionManager = new PositionComponentManager();
-// const PhysicsManager = new PhysicsComponentManager();
-// const VelocityManager = new VelocityComponentManager();
-// const RenderManager = new RenderableComponentManager();
+const PositionManager = new PositionComponentManager();
+const PhysicsManager = new PhysicsComponentManager();
+const VelocityManager = new VelocityComponentManager();
+const RenderManager = new RenderableComponentManager();
 
-// const gravity = new GravitySystem(World, [PositionManager, PhysicsManager, VelocityManager]);
+const gravity = new GravitySystem(World, [PositionManager, PhysicsManager, VelocityManager]);
 
-// const transform = new TransformSystem(World, [PositionManager, VelocityManager]);
+const transform = new TransformSystem(World, [PositionManager, VelocityManager]);
 
-// const renderSys = new RenderSystem(World, [PositionManager, RenderManager]);
+const renderSys = new RenderSystem(World, [PositionManager, RenderManager]);
 
 function main() {
     
-    benchmarks();
+    // benchmarks();
 
-    // const Player = World.createEntity('Player');
-    // Player.addComponent(PositionManager);
-    // Player.addComponent(PhysicsManager);
-    // Player.addComponent(VelocityManager);
-    // Player.addComponent(RenderManager);
+    const Player = World.createEntity('Player');
+    Player.addComponent(PositionManager);
+    Player.addComponent(PhysicsManager);
+    Player.addComponent(VelocityManager);
+    Player.addComponent(RenderManager);
 
-    // gameLoop();
+    gameLoop();
 
 }
 
-// function gameLoop() {
+function gameLoop() {
 
-//     gravity.update();
+    gravity.update();
 
-//     transform.update();
+    transform.update();
 
-//     renderSys.update();
+    renderSys.update();
 
-//     requestAnimationFrame(gameLoop);
-// }
+    requestAnimationFrame(gameLoop);
+}
