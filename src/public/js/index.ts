@@ -31,12 +31,14 @@ function main() {
     
     // benchmarks();
 
-    const Player = World.createEntity('Player');
+    const Player = World.createEntity();
     Player.addComponent(PositionManager);
     Player.addComponent(PhysicsManager);
     Player.addComponent(VelocityManager);
-    const comp = Player.addComponent(RenderManager) as Renderable;
-    comp.element = document.querySelector('.Player') as HTMLDivElement;
+    Player.addComponent(RenderManager);
+    Player.setComponentProperties(RenderManager, {element: document.querySelector('.Player') as HTMLDivElement});
+    // const comp = Player.addComponent(RenderManager) as Renderable;
+    // comp.element = document.querySelector('.Player') as HTMLDivElement;
 
     gameLoop();
 

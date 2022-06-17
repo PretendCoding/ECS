@@ -9,9 +9,8 @@ export class EntityManager {
 
     createEntity(entityId?: string): Entity {
         if (!entityId) {
-            // This should be replaced with a UUID later
-            entityId = Math.random().toString() + Math.pow(Math.random(), Math.random()).toString();
-        }
+            entityId = crypto.randomUUID();
+        }        
         if (this.entities.has(entityId)) {
             throw new Error(`${this} already has an entity called ${entityId}`);
         }

@@ -11,4 +11,8 @@ export class Entity {
     addComponent(manager: ComponentManager): Component {
         return manager.addComponentToEntity(this.id);
     }
+
+    setComponentProperties(manager: ComponentManager, properties: Component) {
+        manager.setComponentProperties(this.id, properties);
+    }
 }

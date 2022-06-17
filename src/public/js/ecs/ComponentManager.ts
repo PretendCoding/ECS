@@ -14,4 +14,6 @@ export class ComponentManager {
         throw new Error(`function addComponentToEntity in ${this.name} should be overridden, and is not`);
         return new Component();
     }
+
+    setComponentProperties(entityId: string, properties: Component) {}
 }
