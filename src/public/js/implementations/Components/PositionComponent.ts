@@ -1,11 +1,6 @@
 import { Component } from "../../ecs/Component";
 import { ComponentManager } from "../../ecs/ComponentManager";
 
-// export class Position extends Component {
-//     [Property in keyof Type]: number;
-//     [y in keyof]: number;
-// }
-
 export interface Position extends Component {
     [key: string]: number;
     x: 0;

@@ -46,5 +46,5 @@ export class System {
 
     init() {}
 
-    update() {}
+    update(tick?: number) {}
 }

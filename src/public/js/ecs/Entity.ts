@@ -12,6 +12,12 @@ export class Entity {
         return manager.addComponentToEntity(this.id);
     }
 
+    addComponents(componentManagers: ComponentManager[]) {
+        for (let manager of componentManagers) {
+            this.addComponent(manager);
+        }
+    }
+
     setComponentProperties(manager: ComponentManager, properties: Component) {
         manager.setComponentProperties(this.id, properties);
     }

@@ -16,7 +16,6 @@ export class ComponentManager {
     }
 
     setComponentProperties(entityId: string, properties: Component) {
-        console.log(this.components);
         if (this.components.has(entityId)) {
             let component = this.components.get(entityId) as Component;
             for (const property in properties) {
@@ -30,6 +29,5 @@ export class ComponentManager {
                 }
             }
         }
-        console.log(this.components);
     }
 }
