@@ -1,7 +1,7 @@
 import { Component } from "../../ecs/Component";
 import { ComponentManager } from "../../ecs/ComponentManager";
 
-export class Physics extends Component {}
+export type Physics = Component;
 
 export class PhysicsComponentManager extends ComponentManager {
     constructor() {
@@ -10,7 +10,7 @@ export class PhysicsComponentManager extends ComponentManager {
     }
     
     addComponentToEntity(entityId: string): Physics {
-        this.components.set(entityId, new Physics());
+        this.components.set(entityId, {});
         return this.components.get(entityId) as Physics;
     }
 }

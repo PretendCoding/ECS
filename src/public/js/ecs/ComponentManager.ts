@@ -12,8 +12,24 @@ export class ComponentManager {
 
     addComponentToEntity(entityId: string): Component {
         throw new Error(`function addComponentToEntity in ${this.name} should be overridden, and is not`);
-        return new Component();
+        return {};
     }
 
-    setComponentProperties(entityId: string, properties: Component) {}
+    setComponentProperties(entityId: string, properties: Component) {
+        console.log(this.components);
+        if (this.components.has(entityId)) {
+            let component = this.components.get(entityId) as Component;
+            for (const property in properties) {
+                if (component.hasOwnProperty(property)) {
+                    component[property] = properties[property];
+                } else {
+                    if (component.hasOwnProperty('name')) {
+                        throw new Error(`${component.name} does not have property ${property}`);
+                    }
+                    throw new Error(`This component does not have a name nor a property ${property}`);
+                }
+            }
+        }
+        console.log(this.components);
+    }
 }
