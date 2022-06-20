@@ -2,8 +2,9 @@ import { Component } from "./Component";
 
 export class ComponentManager {
 // It might be better to call this entityComponentPairs since that's what it is
-    components: Map<string, Component>;
+    components: Map<string, Component | Component[]>;
     name: string;
+    isComponentAnArray = false;
 
     constructor(name: string) {
         this.components = new Map<string, Component>();

@@ -1,3 +1,4 @@
+//Required Imports
 import { EntityManager } from "./ecs/EntityManager";
 import { PhysicsComponentManager } from "./implementations/Components/PhysicsComponent";
 import { PositionComponentManager } from "./implementations/Components/PositionComponent";
@@ -17,8 +18,10 @@ const stateChange = setInterval(() => {
     }
 }, 20);
 
+// Create World/Entity Manager
 const World = new EntityManager();
 
+// Create component managers
 const PositionManager = new PositionComponentManager();
 const PhysicsManager = new PhysicsComponentManager();
 const VelocityManager = new VelocityComponentManager();
@@ -26,20 +29,20 @@ const RenderManager = new RenderableComponentManager();
 const TimerManager = new TimerComponentManager();
 const TimedEventManager = new TimedEventComponentManager();
 
+// Create systems
 const gravity = new GravitySystem(World, [PositionManager, PhysicsManager, VelocityManager]);
-
 const transform = new TransformSystem(World, [PositionManager, VelocityManager]);
-
 const renderSys = new RenderSystem(World, [PositionManager, RenderManager]);
-
 const timerSystem = new TimerSystem(World, [TimerManager, TimedEventManager]);
 
 
+// Create the ball spawner
 const BallSpawner = World.createEntity('BallSpawner');
 BallSpawner.addComponents([TimerManager, TimedEventManager]);
-BallSpawner.setComponentProperties(TimerManager, {frequency: 1500});
-BallSpawner.setComponentProperties(TimedEventManager, {event: () => {console.log('Hello Timer!')}});
+BallSpawner.setComponentProperties(TimerManager, {name:"SpawnBall", frequency: 1500});
+BallSpawner.setComponentProperties(TimedEventManager, {name: "SpawnBall", event: () => { console.log('Hello Timer!')}});
 
+// Function run on document.readyState == 'complete'
 function main() {
     
     // benchmarks();
@@ -52,6 +55,7 @@ function main() {
 
 }
 
+// Gameloop..duh
 function gameLoop(tick: number) {
 
     gravity.update();

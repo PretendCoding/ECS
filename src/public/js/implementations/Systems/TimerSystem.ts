@@ -24,7 +24,7 @@ export class TimerSystem extends System {
             let timedEventManger = this.managersToQuery.get('TimedEventComponentManager') as TimedEventComponentManager;
             let timer = timerManger.components.get(entityId) as Timer;
             let timedEvent = timedEventManger.components.get(entityId) as TimedEvent;
-            let frequency = timer.frequency;
+            let frequency = timer.components[0].frequency; /// SHOULDN"T BE [0]
             let event = timedEvent.event;
             if (this.time%frequency > frequency - lastTime/2 || this.time%frequency < lastTime/2) {
                 event();
